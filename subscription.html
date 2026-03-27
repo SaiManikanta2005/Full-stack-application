@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProStar App - Recharge</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body style="background: var(--bg-gray);">
+    <nav class="navbar">
+        <a href="dashboard.html" class="logo"><i class="fa-solid fa-bolt"></i> ProStar</a>
+        <div class="nav-links">
+            <span id="nav-user-name" style="font-size: 0.9rem; font-weight: 500;"></span>
+            <a href="#" onclick="logout()" class="logout-btn">Logout</a>
+        </div>
+    </nav>
+    
+    <div class="recharge-header fade-in">
+        <h1>Recharge & Plans</h1>
+        <p>Choose the best digital plan for your lifestyle.</p>
+    </div>
+
+    <div class="error-msg" id="sub-error" style="margin-bottom: 1rem;"></div>
+
+    <div class="plans-grid fade-in">
+        <!-- Free Plan -->
+        <div class="plan-card">
+            <h3>Basic Plan</h3>
+            <div class="price">₹0<span>/month</span></div>
+            <ul class="plan-features">
+                <li><i class="fa-solid fa-check-circle"></i> Basic media access</li>
+                <li><i class="fa-solid fa-check-circle"></i> Standard support</li>
+                <li class="disabled"><i class="fa-solid fa-times-circle"></i> Pro Exclusives</li>
+                <li class="disabled"><i class="fa-solid fa-times-circle"></i> Premium Blockbusters</li>
+            </ul>
+            <button class="btn secondary-btn" onclick="selectPlan('FREE')">Select Basic</button>
+        </div>
+
+        <!-- Pro Plan -->
+        <div class="plan-card">
+            <h3>Pro Plan</h3>
+            <div class="price">₹399<span>/month</span></div>
+            <ul class="plan-features">
+                <li><i class="fa-solid fa-check-circle"></i> Pro Exclusives access</li>
+                <li><i class="fa-solid fa-check-circle"></i> HD Streaming (1080p)</li>
+                <li><i class="fa-solid fa-check-circle"></i> Priority support</li>
+                <li class="disabled"><i class="fa-solid fa-times-circle"></i> Premium Blockbusters</li>
+            </ul>
+            <button class="btn primary-btn" onclick="selectPlan('PRO')">Upgrade to Pro</button>
+        </div>
+
+        <!-- Premium Plan -->
+        <div class="plan-card recommended">
+            <div class="plan-badge">Most Popular</div>
+            <h3>Premium Plan</h3>
+            <div class="price">₹999<span>/month</span></div>
+            <ul class="plan-features">
+                <li><i class="fa-solid fa-check-circle"></i> Premium Blockbusters</li>
+                <li><i class="fa-solid fa-check-circle"></i> 4K Ultra HD Streaming</li>
+                <li><i class="fa-solid fa-check-circle"></i> Watch on 4 devices</li>
+                <li><i class="fa-solid fa-check-circle"></i> 24/7 VIP Assistance</li>
+            </ul>
+            <button class="btn jio-btn" onclick="selectPlan('PREMIUM')">Get Premium</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        window.onload = () => {
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (!user) {
+                window.location.href = 'login.html';
+            } else {
+                document.getElementById('nav-user-name').innerText = `Hello, ${user.name}`;
+            }
+        };
+    </script>
+</body>
+</html>

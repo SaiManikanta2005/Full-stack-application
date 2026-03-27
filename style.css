@@ -1,0 +1,515 @@
+/* MyJio Style Redesign */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+:root {
+    --primary-blue: #0f3cc9;
+    --primary-blue-hover: #0a2885;
+    --jio-red: #e51e25;
+    --bg-gray: #f2f4f8;
+    --card-bg: #ffffff;
+    --text-main: #1d1d1d;
+    --text-muted: #6e6e6e;
+    --border-color: #e0e0e0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: var(--bg-gray);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    --bg-gray: #121212;
+    --card-bg: #1e1e1e;
+    --text-main: #ffffff;
+    --text-muted: #aaaaaa;
+    --border-color: #333333;
+    --primary-blue: #3b82f6; 
+}
+
+/* Ensure inputs in dark mode look good */
+body.dark-mode .input-group input,
+body.dark-mode select,
+body.dark-mode textarea {
+    background: #2a2a2a;
+    color: white;
+    border-color: #444;
+}
+body.dark-mode .secondary-btn {
+    background: #2a2a2a;
+    color: white;
+    border-color: #444;
+}
+body.dark-mode .secondary-btn:hover {
+    background: #333;
+}
+body.dark-mode .media-section h3 {
+    color: white;
+}
+
+/* Animations */
+.fade-in { animation: fadeIn 0.5s ease-in-out; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Layout Utilities */
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+.hidden { display: none !important; }
+
+/* Navbar */
+.navbar {
+    background: var(--primary-blue);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    text-decoration: none;
+}
+.navbar .logo i { color: var(--jio-red); }
+.nav-links { display: flex; gap: 1rem; align-items: center; }
+
+/* Glass Cards */
+.card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    border: 1px solid var(--border-color);
+}
+.card h2 {
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+.card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+}
+
+/* Forms */
+form { display: flex; flex-direction: column; gap: 1.2rem; }
+.input-group { display: flex; flex-direction: column; }
+.input-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 0.4rem;
+}
+.input-group input {
+    padding: 0.9rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #fdfdfd;
+    transition: all 0.2s;
+    color: var(--text-main);
+}
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(15, 60, 201, 0.1);
+}
+
+/* Buttons */
+.btn {
+    padding: 0.9rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    width: 100%;
+}
+.primary-btn { background: var(--primary-blue); color: white; }
+.primary-btn:hover { background: var(--primary-blue-hover); }
+.primary-btn:active { transform: scale(0.98); }
+
+.secondary-btn { background: var(--bg-gray); color: var(--text-main); border: 1px solid var(--border-color); }
+.secondary-btn:hover { background: #e0e4ec; }
+
+.jio-btn { background: var(--jio-red); color: white; }
+.jio-btn:hover { background: #c21319; }
+
+.toggle-text {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+.toggle-text span {
+    color: var(--primary-blue);
+    font-weight: 600;
+    cursor: pointer;
+}
+.toggle-text span:hover { text-decoration: underline; }
+
+.error-msg {
+    color: var(--jio-red);
+    font-size: 0.85rem;
+    text-align: center;
+    font-weight: 500;
+    min-height: 18px;
+}
+
+/* Admin Access Box (For Demo) */
+.admin-demo-box {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: var(--bg-gray);
+    border-radius: 8px;
+    border: 1px dashed var(--border-color);
+    text-align: center;
+}
+.admin-demo-box p { margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--text-muted); }
+
+/* ---- Dashboard Specifics ---- */
+.dash-header {
+    background: var(--primary-blue);
+    padding: 2.5rem 1rem 4rem 1rem;
+    color: white;
+    border-radius: 0 0 24px 24px;
+    margin-bottom: -3rem;
+}
+.dash-header-inner {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.user-greeting { display: flex; flex-direction: column; gap: 4px; }
+.user-greeting h1 { font-size: 1.5rem; font-weight: 700; color: white; margin: 0; }
+.user-greeting p { color: rgba(255,255,255,0.8); font-size: 0.9rem; margin: 0; }
+.logout-btn { background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 20px; text-decoration: none; font-size: 0.85rem;}
+
+.main-content { max-width: 600px; margin: 0 auto; padding: 0 1rem 3rem 1rem; width: 100%;}
+.hero-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+}
+.hero-card .plan-info h3 { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.hero-card .plan-info h2 { color: var(--primary-blue); font-size: 1.8rem; font-weight: 900;}
+.hero-card .recharge-btn { background: var(--jio-red); color: white; border-radius: 30px; padding: 8px 16px; text-decoration: none; font-weight: 600; font-size: 0.85rem; display: inline-block;}
+
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+.action-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+.action-icon {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--primary-blue);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.action-item span { font-size: 0.75rem; font-weight: 500; color: var(--text-muted); }
+
+/* JioCinema Style Rows */
+.media-section { margin-bottom: 2rem; }
+.media-section h3 { margin-bottom: 1rem; font-size: 1.1rem; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 8px;}
+.media-section h3 i { color: var(--jio-red); }
+.media-row {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 15px;
+}
+.media-row::-webkit-scrollbar { height: 4px; }
+.media-row::-webkit-scrollbar-thumb { background: #d0d0d0; border-radius: 4px; }
+.video-card {
+    min-width: 140px;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    background: #000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+.video-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; transition: transform 0.3s; }
+.video-card:hover img { transform: scale(1.05); }
+.play-overlay, .lock-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background: rgba(0,0,0,0.2);
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+.play-overlay i { font-size: 2rem; border-radius: 50%; background: rgba(255,255,255,0.2); padding: 5px; backdrop-filter: blur(5px);}
+.lock-overlay { background: rgba(0,0,0,0.6); }
+.lock-overlay i { font-size: 1.5rem; margin-bottom: 5px; color: var(--jio-red); }
+
+/* Subscription Page Styling */
+.recharge-header { text-align: center; padding: 2rem 1rem; background: white; margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); }
+.recharge-header h1 { color: var(--primary-blue); font-size: 1.8rem; margin-bottom: 0.5rem; }
+.recharge-header p { color: var(--text-muted); }
+
+.plans-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+.plan-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    width: 300px;
+    border: 1px solid var(--border-color);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.plan-card.recommended {
+    border: 2px solid var(--jio-red);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(229, 30, 37, 0.15);
+}
+.plan-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--jio-red);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.plan-card h3 { color: var(--primary-blue); font-size: 1.2rem; margin-bottom: 0.5rem; }
+.plan-card .price { font-size: 2.5rem; font-weight: 900; color: var(--text-main); margin-bottom: 1rem; }
+.plan-card .price span { font-size: 1rem; font-weight: 500; color: var(--text-muted); }
+
+.plan-features { flex: 1; margin-bottom: 1.5rem; list-style: none; }
+.plan-features li { display: flex; gap: 10px; margin-bottom: 10px; font-size: 0.95rem; color: var(--text-muted); align-items: center; }
+.plan-features li i.fa-check-circle { color: #28a745; }
+.plan-features li.disabled { color: #ccc; }
+.plan-features li.disabled i { color: #ccc; }
+
+/* Admin Table */
+.admin-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+.table-wrapper {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
+}
+table { width: 100%; border-collapse: collapse; text-align: left; }
+table th { background: var(--primary-blue); color: white; padding: 1rem; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; }
+table td { padding: 1rem; border-bottom: 1px solid var(--border-color); color: var(--text-main); font-size: 0.95rem; }
+table tr:last-child td { border-bottom: none; }
+.badge { padding: 4px 10px; border-radius: 30px; font-size: 0.8rem; font-weight: 600; }
+.badge.active { background: #e8f5e9; color: #2e7d32; }
+.badge.inactive { background: #ffebee; color: #c62828; }
+
+/* Video Modal */
+.video-modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+.video-modal-content {
+    width: 90%;
+    max-width: 700px;
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+.close-modal {
+    color: var(--jio-red);
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    background: rgba(229, 30, 37, 0.1);
+    padding: 6px 14px;
+    border-radius: 30px;
+    transition: background 0.3s;
+}
+.close-modal:hover { background: rgba(229, 30, 37, 0.2); }
+
+/* Chat Window */
+.chat-window {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 320px;
+    height: 450px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+.chat-header {
+    background: var(--primary-blue);
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+}
+.chat-header .close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.message {
+    padding: 10px 15px;
+    border-radius: 15px;
+    max-width: 80%;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    position: relative;
+    word-wrap: break-word;
+}
+.message.received {
+    align-self: flex-start;
+    background: var(--bg-gray);
+    color: var(--text-main);
+    border-bottom-left-radius: 5px;
+}
+.message.sent {
+    align-self: flex-end;
+    background: var(--primary-blue);
+    color: white;
+    border-bottom-right-radius: 5px;
+}
+.chat-input-area {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid var(--border-color);
+    background: var(--card-bg);
+}
+.chat-input-area input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    margin-right: 10px;
+    font-size: 0.9rem;
+    background: var(--bg-gray);
+    color: var(--text-main);
+}
+.chat-input-area input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+}
+.chat-input-area .send-btn {
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+.chat-input-area .send-btn:hover {
+    background: var(--primary-blue-hover);
+}
+
+body.dark-mode .message.received {
+    background: #2a2a2a;
+}

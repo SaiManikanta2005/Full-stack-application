@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProStar App - Services</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body style="background: var(--bg-gray);">
+    <nav class="navbar">
+        <a href="dashboard.html" class="logo"><i class="fa-solid fa-arrow-left" style="color:white; margin-right: 8px;"></i> Back</a>
+    </nav>
+    <div class="container fade-in" style="align-items: center; max-width: 800px; margin: 0 auto; padding-top: 3rem;">
+        <h1 style="color: var(--primary-blue); font-size: 2rem; margin-bottom: 2rem;"><i class="fa-solid fa-mobile-screen"></i> Digital Services</h1>
+        
+        <div class="card" style="max-width: 100%; margin-bottom: 1.5rem; text-align: left;">
+            <h2 style="font-size: 1.3rem; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px;">Network & Devices</h2>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div style="display: flex; align-items: center; gap: 15px; background: #f9f9f9; padding: 15px; border-radius: 8px;">
+                    <i class="fa-solid fa-tower-cell" style="color: var(--primary-blue); font-size: 1.5rem;"></i>
+                    <div style="flex:1;"><strong>5G Upgrade Check</strong><p style="margin:0; font-size:0.85rem; color:#888;">Check if your device is 5G ready.</p></div>
+                    <button class="btn secondary-btn small" style="width: auto; padding: 5px 15px;" onclick="alert('Your device is magically 5G ready!')">Check</button>
+                </div>
+                <div style="display: flex; align-items: center; gap: 15px; background: #f9f9f9; padding: 15px; border-radius: 8px;">
+                    <i class="fa-solid fa-music" style="color: var(--jio-red); font-size: 1.5rem;"></i>
+                    <div style="flex:1;"><strong>ProTunes</strong><p style="margin:0; font-size:0.85rem; color:#888;">Set your favorite song as caller tune.</p></div>
+                    <button class="btn jio-btn small" style="width: auto; padding: 5px 15px;" onclick="alert('Music gallery coming soon!')">Browse</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        window.onload = () => {
+             const user = JSON.parse(localStorage.getItem('user'));
+             if (!user) window.location.href = 'login.html';
+        };
+    </script>
+</body>
+</html>
