@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Feedback Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Feedback Form</h2>
+
+    <form id="feedbackForm">
+
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" id="name">
+            <small class="error" id="nameError"></small>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="text" id="email">
+            <small class="error" id="emailError"></small>
+        </div>
+
+        <div class="form-group">
+            <label>Message</label>
+            <textarea id="message" rows="4"></textarea>
+            <small class="error" id="messageError"></small>
+        </div>
+
+        <button type="button" id="submitBtn">Submit</button>
+
+    </form>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

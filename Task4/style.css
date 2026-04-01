@@ -1,0 +1,37 @@
+body {
+    font-family: Arial;
+    background: #f4f6f9;
+    padding: 40px;
+}
+
+h2, h3 {
+    margin-bottom: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin-bottom: 30px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background: #4a90e2;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+#highest, #active {
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+}
