@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProStar App - Support</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body style="background: var(--bg-gray);">
+    <nav class="navbar">
+        <a href="dashboard.html" class="logo"><i class="fa-solid fa-arrow-left" style="color:white; margin-right: 8px;"></i> Back</a>
+    </nav>
+    <div class="container fade-in" style="align-items: center; max-width: 800px; margin: 0 auto; padding-top: 3rem;">
+        <h1 style="color: var(--primary-blue); font-size: 2rem; margin-bottom: 2rem;"><i class="fa-solid fa-headset"></i> Help & Support</h1>
+        
+        <div class="card" style="max-width: 100%; margin-bottom: 1.5rem; text-align: center;">
+            <i class="fa-solid fa-user-doctor" style="font-size: 3rem; color: var(--jio-red); margin-bottom: 15px;"></i>
+            <h2 style="font-size: 1.5rem;">24/7 Dedicated Support</h2>
+            <p>Our team is always online to help you with your account, billing, or technical queries.</p>
+            <button class="btn primary-btn" style="margin-bottom: 15px; width: 80%;" onclick="openChat()"><i class="fa-solid fa-comment-dots"></i> Chat with LIVE Agent</button>
+            <div style="font-size: 0.9rem; color: var(--text-muted);">or call us at <strong>1800-PRO-STAR</strong></div>
+        </div>
+
+        <div class="card" style="max-width: 100%; text-align: left;">
+            <h3 style="margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 10px;">Frequently Asked Questions</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 10px 0; border-bottom: 1px solid #eee;"><strong>How do I upgrade my plan?</strong><br><small style="color:#888;">Go to the dashboard and click 'Upgrade' to select a Pro or Premium plan.</small></li>
+                <li style="padding: 10px 0; border-bottom: 1px solid #eee;"><strong>Is the basic plan truly free?</strong><br><small style="color:#888;">Yes! You get access to a limited pool of content for free.</small></li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Chat Window -->
+    <div id="chat-window" class="chat-window hidden">
+        <div class="chat-header">
+            <span><i class="fa-solid fa-headset"></i> Live Agent</span>
+            <button onclick="closeChat()" class="close-btn">&times;</button>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="message received">
+                Hello! Welcome to ProStar Support. How can I help you today?
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="handleChatKeyPress(event)">
+            <button onclick="sendMessage()" class="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        window.onload = () => {
+             const user = JSON.parse(localStorage.getItem('user'));
+             if (!user) window.location.href = 'login.html';
+        };
+    </script>
+</body>
+</html>

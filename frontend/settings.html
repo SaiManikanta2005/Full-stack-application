@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProStar App - Settings</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body style="background: var(--bg-gray);">
+    <nav class="navbar">
+        <a href="dashboard.html" class="logo"><i class="fa-solid fa-arrow-left" style="color:white; margin-right: 8px;"></i> Back</a>
+    </nav>
+    <div class="container fade-in" style="align-items: center; max-width: 800px; margin: 0 auto; padding-top: 3rem;">
+        <h1 style="color: var(--primary-blue); font-size: 2rem; margin-bottom: 2rem;"><i class="fa-solid fa-gear"></i> Account Settings</h1>
+        
+        <div class="card" style="max-width: 100%; margin-bottom: 1.5rem; text-align: left;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 15px;">
+                <h2 style="font-size: 1.3rem; margin: 0;">Personal Details</h2>
+                <button id="edit-profile-btn" class="btn secondary-btn" style="width: auto; padding: 5px 15px; border-radius: 8px;" onclick="toggleEditProfile()">Edit</button>
+            </div>
+            
+            <div id="profile-display">
+                <div style="margin-bottom: 10px;"><strong>Name:</strong> <span id="set-name">Loading...</span></div>
+                <div style="margin-bottom: 10px;"><strong>Email:</strong> <span id="set-email">Loading...</span></div>
+                <div style="margin-bottom: 10px;"><strong>Age:</strong> <span id="set-age">Loading...</span></div>
+            </div>
+
+            <form id="edit-profile-form" class="hidden">
+                <div class="input-group">
+                    <label>Name</label>
+                    <input type="text" id="edit-name" required>
+                </div>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" id="edit-email" required>
+                </div>
+                <div class="input-group">
+                    <label>Age</label>
+                    <input type="number" id="edit-age" required>
+                </div>
+                <div id="edit-error" class="error-msg"></div>
+                <div style="display: flex; gap: 10px; margin-top: 15px;">
+                    <button type="submit" class="btn primary-btn">Save</button>
+                    <button type="button" class="btn secondary-btn" onclick="toggleEditProfile()">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card" style="max-width: 100%; text-align: left;">
+            <h2 style="font-size: 1.3rem; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px;">Preferences</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom:10px;">
+                <span><i class="fa-solid fa-bell" style="color:var(--text-muted); margin-right:5px;"></i> Push Notifications</span>
+                <input type="checkbox" checked style="width: 20px; height: 20px;">
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom:10px;">
+                <span><i class="fa-solid fa-moon" style="color:var(--text-muted); margin-right:5px;"></i> Dark Mode</span>
+                <input type="checkbox" id="dark-mode-toggle" style="width: 20px; height: 20px;" onchange="toggleDarkMode(this.checked)">
+            </div>
+            <button class="btn jio-btn" style="margin-top: 10px;" onclick="alert('Password reset link sent to your email.')">Reset Password</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        window.onload = () => {
+             const user = JSON.parse(localStorage.getItem('user'));
+             if (!user) {
+                 window.location.href = 'login.html';
+             } else {
+                 document.getElementById('set-name').innerText = user.name || 'N/A';
+                 document.getElementById('set-email').innerText = user.email || 'N/A';
+                 document.getElementById('set-age').innerText = user.age || 'N/A';
+             }
+        };
+    </script>
+</body>
+</html>

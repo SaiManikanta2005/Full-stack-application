@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProStar App - Admin</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body style="background: var(--bg-gray);">
+    <nav class="navbar">
+        <a href="#" class="logo"><i class="fa-solid fa-bolt"></i> ProStar <span style="color:var(--jio-red); font-size:1rem; margin-left: 5px;">ADMIN</span></a>
+        <div class="nav-links">
+            <a href="#" onclick="logout()" class="logout-btn"><i class="fa-solid fa-power-off"></i> Logout</a>
+        </div>
+    </nav>
+
+    <div class="admin-container fade-in">
+        <div style="margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <h2 style="color: var(--primary-blue); font-size: 1.8rem; margin: 0;">CRM Dashboard</h2>
+                <p style="color: var(--text-muted); margin: 0;">Manage users and subscriptions</p>
+            </div>
+            <div style="background: white; padding: 10px 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                <i class="fa-solid fa-users" style="color: var(--primary-blue); margin-right: 8px;"></i> 
+                <strong>Live Database</strong>
+            </div>
+        </div>
+        
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Age</th>
+                        <th>Plan</th>
+                        <th>Status</th>
+                        <th>Joined</th>
+                    </tr>
+                </thead>
+                <tbody id="users-list">
+                    <tr><td colspan="7" style="text-align: center; padding: 2rem;">Loading users...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        window.onload = async () => {
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (!user || user.role !== 'admin') {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            try {
+                // Ensure API_URL is defined from script.js
+                const res = await fetch(`${API_URL}/admin/users`);
+                const data = await res.json();
+                
+                const tbody = document.getElementById('users-list');
+                tbody.innerHTML = '';
+
+                if(data.users.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 2rem;">No users found.</td></tr>';
+                    return;
+                }
+
+                data.users.forEach(u => {
+                    const tr = document.createElement('tr');
+                    const joinDate = u.start_date ? new Date(u.start_date).toLocaleDateString() : 'N/A';
+                    
+                    let planBadge = '';
+                    if(u.subscription_plan === 'PREMIUM') planBadge = `<span style="background: var(--jio-red); color: white; padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; font-weight: bold;">PREMIUM</span>`;
+                    else if(u.subscription_plan === 'PRO') planBadge = `<span style="background: var(--primary-blue); color: white; padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; font-weight: bold;">PRO</span>`;
+                    else if(u.subscription_plan === 'FREE') planBadge = `<span style="background: #95a5a6; color: white; padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; font-weight: bold;">FREE</span>`;
+                    else planBadge = `<span style="border: 1px solid #ccc; color: #666; padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; font-weight: bold;">NONE</span>`;
+
+                    tr.innerHTML = `
+                        <td><small style="color:#666">${u.id}</small></td>
+                        <td><strong>${u.name}</strong></td>
+                        <td>${u.email}</td>
+                        <td>${u.age}</td>
+                        <td>${planBadge}</td>
+                        <td>
+                            <span class="badge ${u.subscription_status && u.subscription_status.toLowerCase() === 'active' ? 'active' : 'inactive'}">${u.subscription_status || 'Inactive'}</span>
+                        </td>
+                        <td>${joinDate}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } catch (err) {
+                console.error(err);
+                alert("Error loading users.");
+            }
+        };
+    </script>
+</body>
+</html>

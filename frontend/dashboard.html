@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProStar App - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo"><i class="fa-solid fa-bolt"></i> ProStar</a>
+        <div class="nav-links">
+            <a href="#" onclick="logout()" class="logout-btn"><i class="fa-solid fa-power-off"></i> Logout</a>
+        </div>
+    </nav>
+
+    <div class="dash-header">
+        <div class="dash-header-inner">
+            <div class="user-greeting">
+                <h1 id="hero-title" class="fade-in">Welcome!</h1>
+                <p>Enjoy your premium digital services</p>
+            </div>
+            <div style="font-size: 1.5rem; color: white;">
+                <i class="fa-solid fa-circle-user"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content fade-in">
+        <!-- Hero Card (Current Plan) -->
+        <div class="hero-card">
+            <div class="plan-info">
+                <h3>Current Plan</h3>
+                <h2 id="dash-nav-plan">Loading...</h2>
+            </div>
+            <a href="subscription.html" class="recharge-btn">Recharge</a>
+        </div>
+
+        <!-- Quick Actions Grid -->
+        <div class="quick-actions">
+            <div class="action-item" onclick="window.location.href='services.html'">
+                <div class="action-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+                <span>Services</span>
+            </div>
+            <div class="action-item" onclick="window.location.href='subscription.html'">
+                <div class="action-icon"><i class="fa-solid fa-arrow-up-right-dots"></i></div>
+                <span>Upgrade</span>
+            </div>
+            <div class="action-item" onclick="window.location.href='support.html'">
+                <div class="action-icon"><i class="fa-solid fa-headset"></i></div>
+                <span>Support</span>
+            </div>
+            <div class="action-item" onclick="window.location.href='settings.html'">
+                <div class="action-icon"><i class="fa-solid fa-gear"></i></div>
+                <span>Settings</span>
+            </div>
+        </div>
+
+        <!-- Entertainment Section -->
+        <div class="media-section">
+            <h3><i class="fa-solid fa-film"></i> Basic Content</h3>
+            <div class="media-row" id="row-free"></div>
+        </div>
+        
+        <div class="media-section">
+            <h3><i class="fa-solid fa-crown" style="color: #f39c12;"></i> Pro Exclusives</h3>
+            <div class="media-row" id="row-pro"></div>
+        </div>
+        
+        <div class="media-section">
+            <h3><i class="fa-solid fa-star" style="color: var(--jio-red);"></i> Premium Blockbusters</h3>
+            <div class="media-row" id="row-premium"></div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="video-modal hidden">
+        <div class="video-modal-content fade-in">
+            <div style="display:flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h3 style="color: var(--text-main); margin: 0;">Now Playing</h3>
+                <span id="close-modal-btn" class="close-modal" onclick="closeVideo()" style="display:none;">&times; Close</span>
+                <span id="wait-msg" style="color: var(--text-muted); font-size: 0.85rem; font-weight: 500;"><i class="fa-solid fa-spinner fa-spin" style="margin-right:5px;"></i> (Unlocks in 10s...)</span>
+            </div>
+            <video id="app-video-player" controls controlsList="nodownload" style="width: 100%; border-radius: 8px;">
+                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Load Dashboard Data
+        window.onload = () => {
+            loadDashboard();
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProStar App - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container fade-in">
+        <div class="card" id="login-card">
+            <h2 style="text-align:center; color: var(--primary-blue); font-size:2.2rem; margin-bottom: 2rem;">
+                <i class="fa-solid fa-bolt" style="color: var(--jio-red);"></i> ProStar
+            </h2>
+            <h3 style="margin-bottom: 0.5rem; text-align:center; font-weight:700;">Welcome Back</h3>
+            <p style="text-align:center; margin-bottom: 2rem;">Please login to your account</p>
+            
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="login-email">Mobile No / Email ID</label>
+                    <input type="email" id="login-email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter password" required>
+                </div>
+                <div class="error-msg" id="login-error"></div>
+                <button type="submit" class="btn primary-btn" style="margin-top: 0.5rem;">Log In</button>
+            </form>
+            <p class="toggle-text">Don't have an account? <span onclick="toggleForms()">Sign Up</span></p>
+
+            <div class="admin-demo-box">
+                <p><strong>Admin Login Access</strong></p>
+                <button type="button" class="btn secondary-btn" style="padding: 6px; font-size: 0.85rem; margin-top: 5px;" onclick="fillAdminDetails()">Auto-Fill Admin Credentials</button>
+            </div>
+        </div>
+
+        <div class="card hidden" id="register-card">
+            <h2 style="text-align:center; color: var(--primary-blue); font-size:1.8rem; margin-bottom: 1.5rem;">
+                <i class="fa-solid fa-bolt" style="color: var(--jio-red);"></i> ProStar
+            </h2>
+            <h3 style="margin-bottom: 0.5rem; text-align:center; font-weight:700;">Create Account</h3>
+            <p style="text-align:center; margin-bottom: 1.5rem;">Join the digital revolution.</p>
+            
+            <form id="register-form">
+                <div class="input-group">
+                    <label for="reg-name">Full Name</label>
+                    <input type="text" id="reg-name" placeholder="e.g. John Doe" required>
+                </div>
+                <div class="input-group">
+                    <label for="reg-email">Email ID</label>
+                    <input type="email" id="reg-email" placeholder="john@example.com" required>
+                </div>
+                <div class="input-group">
+                    <label for="reg-password">Password</label>
+                    <input type="password" id="reg-password" placeholder="Min 6 characters" required>
+                </div>
+                <div class="input-group">
+                    <label for="reg-age">Age</label>
+                    <input type="number" id="reg-age" placeholder="Must be 18+" required min="18">
+                </div>
+                <div class="error-msg" id="reg-error"></div>
+                <button type="submit" class="btn primary-btn">Sign Up</button>
+            </form>
+            <p class="toggle-text">Already have an account? <span onclick="toggleForms()">Login Here</span></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function toggleForms() {
+            document.getElementById('login-card').classList.toggle('hidden');
+            document.getElementById('register-card').classList.toggle('hidden');
+        }
+
+        function fillAdminDetails() {
+            document.getElementById('login-email').value = 'admin@prostar.com';
+            document.getElementById('login-password').value = 'admin123';
+        }
+    </script>
+</body>
+</html>
